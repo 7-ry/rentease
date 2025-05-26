@@ -1,0 +1,94 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="home.html">RentEase</a>
+    <p class="navbar-text ms-2 me-auto">
+      Hello,
+      <span class="fw-bold" id="userGreetingName"></span>
+    </p>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="home.html" id="navHomeLink">Home</a>
+        <a class="nav-link" href="new-flats.html" id="navNewFlatLink"
+          >Add Flat</a
+        >
+        <a class="nav-link" href="flats.html" id="navAllFlatsLink">All Flats</a>
+        <a class="nav-link" href="profile.html" id="navProfileLink">Profile</a>
+        <a class="nav-link" href="#" id="logoutLink">Logout</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  function initializeNavbar() {
+    const userGreetingNameSpan = document.getElementById('userGreetingName');
+    const logoutLink = document.getElementById('logoutLink');
+    const currentUserEmail = sessionStorage.getItem('currentUserEmail');
+
+    if (currentUserEmail && userGreetingNameSpan) {
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      const currentUser = users.find(
+        (user) =>
+          user._email === currentUserEmail || user.email === currentUserEmail
+      );
+      if (currentUser) {
+        userGreetingNameSpan.textContent =
+          currentUser._firstName || currentUser.firstName || currentUserEmail; // Fallback to email if name not found
+      } else {
+        userGreetingNameSpan.textContent = currentUserEmail; // Fallback if user object not found
+      }
+    } else if (userGreetingNameSpan) {
+      userGreetingNameSpan.textContent = 'Guest'; // Or hide the greeting
+    }
+
+    if (logoutLink) {
+      logoutLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        sessionStorage.removeItem('currentUserEmail');
+        sessionStorage.removeItem('loginTimestamp');
+        alert('You have been logged out.');
+        window.location.href = 'login.html';
+      });
+    }
+
+    // Optional: Set active nav link
+    const currentPage = window.location.pathname.split('/').pop(); // e.g., "home.html"
+    if (currentPage) {
+      const navLinks = {
+        'home.html': document.getElementById('navHomeLink'),
+        'new-flats.html': document.getElementById('navNewFlatLink'),
+        'flats.html': document.getElementById('navAllFlatsLink'),
+        'profile.html': document.getElementById('navProfileLink'),
+      };
+      // Remove 'active' from all
+      Object.values(navLinks).forEach(
+        (link) => link && link.classList.remove('active', 'fw-bold')
+      );
+      // Add 'active' and 'fw-bold' to current page's link
+      if (navLinks[currentPage]) {
+        navLinks[currentPage].classList.add('active', 'fw-bold');
+        navLinks[currentPage].setAttribute('aria-current', 'page');
+      }
+    }
+  }
+
+  // Call this function on DOMContentLoaded in each page's main JS file
+  // or in a shared script.
+  // Example for js/home.js (and similarly for others):
+  // document.addEventListener('DOMContentLoaded', () => {
+  //     validateSession(); // Assuming you have this
+  //     initializeNavbar();
+  //     // ... rest of your home.js logic
+  // });
+</script>

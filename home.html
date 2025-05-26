@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Favorites - RentEase</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="home.html">RentEase</a>
+        <p class="navbar-text ms-2 mb-0 me-auto">
+          Hello,
+          <span class="fw-bold" id="userGreetingName"></span>
+        </p>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ms-auto">
+            <a class="nav-link" href="home.html" id="navHomeLink">Home</a>
+            <a class="nav-link" href="new-flats.html" id="navNewFlatLink"
+              >Add Flat</a
+            >
+            <a class="nav-link" href="flats.html" id="navAllFlatsLink"
+              >All Flats</a
+            >
+            <a class="nav-link" href="profile.html" id="navProfileLink"
+              >Profile</a
+            >
+            <a class="nav-link" href="#" id="logoutLink">Logout</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <section class="min-vh-100 py-5" style="background-color: #61899a">
+      <div class="container">
+        <div class="card shadow-sm mb-4" style="border-radius: 0.5rem">
+          <div class="card-body">
+            <h2 class="card-title mb-3">My Favorite Flats</h2>
+            <div class="dropdown">
+              <button
+                class="btn btn-dark dropdown-toggle"
+                type="button"
+                id="menuDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                data-bs-auto-close="false"
+              >
+                Menu (Filter/Sort)
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="menuDropdown">
+                <li class="dropend">
+                  <a
+                    class="dropdown-item dropdown-toggle"
+                    href="#"
+                    id="filterDropdown"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    data-bs-auto-close="outside"
+                  >
+                    Filter Favorites
+                  </a>
+                  <ul
+                    class="dropdown-menu p-3"
+                    aria-labelledby="filterDropdown"
+                    style="width: 300px"
+                  >
+                    <div class="mb-3">
+                      <label for="filterCity" class="form-label">City</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="filterCity"
+                        placeholder="Enter city"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Price Range</label>
+                      <div class="input-group">
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="filterMinPrice"
+                          placeholder="Min Price"
+                        />
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="filterMaxPrice"
+                          placeholder="Max Price"
+                        />
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Area Size Range (sqm)</label>
+                      <div class="input-group">
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="filterMinArea"
+                          placeholder="Min Area"
+                        />
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="filterMaxArea"
+                          placeholder="Max Area"
+                        />
+                      </div>
+                    </div>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li>
+                      <button
+                        type="button"
+                        class="btn btn-dark w-100"
+                        id="applyFiltersButton"
+                      >
+                        Apply Filters
+                      </button>
+                    </li>
+                  </ul>
+                </li>
+                <li class="dropend">
+                  <a
+                    class="dropdown-item dropdown-toggle"
+                    href="#"
+                    id="sortDropdown"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    >Sort Favorites</a
+                  >
+                  <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+                    <li>
+                      <a
+                        class="dropdown-item sort-option"
+                        href="#"
+                        id="sortCityLink"
+                        data-sort-by="city"
+                        >City</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item sort-option"
+                        href="#"
+                        id="sortPriceLink"
+                        data-sort-by="price"
+                        >Price</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item sort-option"
+                        href="#"
+                        id="sortAreaLink"
+                        data-sort-by="area"
+                        >Area</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#" id="resetOptions">Reset</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card shadow-sm" style="border-radius: 0.5rem">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table
+                class="table table-striped table-hover table-bordered mb-0"
+                id="table"
+              >
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">City</th>
+                    <th scope="col">Street</th>
+                    <th scope="col">Number</th>
+                    <th scope="col">Area (sqm)</th>
+                    <th scope="col">AC</th>
+                    <th scope="col">Year Built</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Available Date</th>
+                    <th scope="col">Remove</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="9" class="text-center">
+                      Loading your favorite flats...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.js"></script>
+      <script src="js/home.js" defer></script>
+    </section>
+  </body>
+</html>

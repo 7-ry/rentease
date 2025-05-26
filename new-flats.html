@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New Flat - RentEase</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="home.html">RentEase</a>
+        <p class="navbar-text ms-2 mb-0 me-auto">
+          Hello,
+          <span class="fw-bold" id="userGreetingName"></span>
+        </p>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ms-auto">
+            <a class="nav-link" href="home.html" id="navHomeLink">Home</a>
+            <a class="nav-link" href="new-flats.html" id="navNewFlatLink"
+              >Add Flat</a
+            >
+            <a class="nav-link" href="flats.html" id="navAllFlatsLink"
+              >All Flats</a
+            >
+            <a class="nav-link" href="profile.html" id="navProfileLink"
+              >Profile</a
+            >
+            <a class="nav-link" href="#" id="logoutLink">Logout</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="min-vh-100 py-5" style="background-color: #61899a">
+      <div class="container">
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="col col-xl-10">
+            <div class="card shadow-sm mb-4" style="border-radius: 1rem">
+              <div class="row g-0 justify-content-center">
+                <div class="col-md-10 col-lg-9 col-xl-8">
+                  <div class="card-body p-4 p-lg-5 text-black">
+                    <form id="registerForm">
+                      <div
+                        class="d-flex align-items-center justify-content-center mb-3 pb-1"
+                      >
+                        <span class="h1 fw-bold mb-0">RentEase</span>
+                      </div>
+
+                      <h5
+                        class="fw-normal text-center mb-3 pb-3"
+                        style="letter-spacing: 1px"
+                      >
+                        Add New Flat Information
+                      </h5>
+
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="citySelect"
+                              >City</label
+                            >
+                            <select
+                              id="citySelect"
+                              class="form-select form-select-lg"
+                            >
+                              <option selected disabled value="">
+                                Choose a city...
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                          <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="street"
+                              >Street Name</label
+                            >
+                            <input
+                              type="text"
+                              id="street"
+                              class="form-control form-control-lg"
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                          <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="streetNumber"
+                              >Street Number</label
+                            >
+                            <input
+                              type="number"
+                              id="streetNumber"
+                              class="form-control form-control-lg"
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                          <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="area"
+                              >Area Size (sqm)</label
+                            >
+                            <input
+                              type="number"
+                              id="area"
+                              class="form-control form-control-lg"
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                          <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="yearBuilt"
+                              >Year Built</label
+                            >
+                            <input
+                              type="number"
+                              id="yearBuilt"
+                              class="form-control form-control-lg"
+                              min="1900"
+                              max="2099"
+                              placeholder="YYYY"
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                          <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="price"
+                              >Rent Price ($)</label
+                            >
+                            <input
+                              type="number"
+                              id="price"
+                              class="form-control form-control-lg"
+                              placeholder="$"
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                          <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="availableDate"
+                              >Date Available</label
+                            >
+                            <input
+                              id="availableDate"
+                              class="form-control form-control-lg"
+                              type="date"
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4 d-flex align-items-center">
+                          <div
+                            class="form-check form-switch"
+                            style="padding-left: 2.5em"
+                          >
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              id="ac"
+                              style="
+                                height: 1.5rem;
+                                width: 3rem;
+                                margin-left: -2.5em;
+                              "
+                            />
+                            <label
+                              class="form-check-label"
+                              for="ac"
+                              style="padding-left: 1em"
+                              >AC</label
+                            >
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="pt-1 mb-4 d-flex justify-content-center">
+                        <button
+                          class="btn btn-dark btn-lg btn-block"
+                          type="submit"
+                          style="width: 100%; max-width: 300px"
+                        >
+                          Upload New Flat
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/new-flats.js" defer></script>
+  </body>
+</html>
