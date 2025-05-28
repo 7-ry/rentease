@@ -52,7 +52,7 @@ function initializeNavbar() {
 
 document.addEventListener('DOMContentLoaded', () => {
   validateSession();
-  initializeNavbar(); // Call navbar initializer
+  initializeNavbar();
 
   const updateForm = document.getElementById('updateForm');
   const firstNameInput = document.getElementById('firstName');
@@ -110,20 +110,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const passwordInput = document.getElementById('password'); // Get password input
       const passwordValue = passwordInput ? passwordInput.value : '';
 
-      // Perform overall form validation first (excluding explicit password pattern for a moment)
-      // We will rely on our JS check for the pattern.
       // The HTML `pattern` attribute will still provide browser hints and CSS pseudo-classes like :invalid
       if (!updateForm.checkValidity()) {
-        // This check will catch required fields, email format, minlength (other than password pattern if it was missed)
-        updateForm.classList.add('was-validated');
         console.error(
           'Form is not valid due to HTML5 constraints (e.g., required, minlength, type). Check other fields.'
         );
-        // Find the first invalid field and focus it for better UX
-        const firstInvalidField = updateForm.querySelector(':invalid');
-        if (firstInvalidField) {
-          firstInvalidField.focus();
-        }
         return;
       }
 
@@ -181,8 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           users[userIndex].password = updatedPassword;
         }
-
-        // Email is not updated, it's read-only
 
         localStorage.setItem(USER_KEY, JSON.stringify(users));
         alert('Profile updated successfully!');

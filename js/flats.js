@@ -322,10 +322,8 @@ function applyFiltersAndRender() {
 document.addEventListener('DOMContentLoaded', () => {
   initializeNavbar();
   // Check if user is logged in, redirect to login page if not
-  if (!sessionStorage.getItem('currentUserEmail')) {
-    alert('You must be logged in to view this page.');
-    window.location.href = 'login.html';
-    return; // Stop further execution if not logged in
+  if (!validateSession()) {
+    return; // Stop further execution if session is invalid
   }
 
   // Load initial flats from localStorage
@@ -389,6 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial call to set sort indicators correctly based on currentSortBy and currentSortOrder
   updateSortIndicators();
 });
+
 function initializeNavbar() {
   const userGreetingNameSpan = document.getElementById('userGreetingName');
   const currentUserEmail = sessionStorage.getItem('currentUserEmail');

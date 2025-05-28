@@ -286,10 +286,8 @@ function applyFiltersAndRender() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (!sessionStorage.getItem('currentUserEmail')) {
-    alert('You must be logged in to view this page.');
-    window.location.href = 'login.html';
-    return;
+  if (!validateSession()) {
+    return; // Stop further execution if session is invalid
   }
   initializeNavbar();
 
@@ -347,6 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateSortIndicators();
 });
+
 function initializeNavbar() {
   const userGreetingNameSpan = document.getElementById('userGreetingName');
   const currentUserEmail = sessionStorage.getItem('currentUserEmail');

@@ -143,18 +143,18 @@ document.addEventListener('DOMContentLoaded', () => {
     registrationForm.addEventListener('submit', (event) => {
       event.preventDefault();
 
-      // Form validation check (Bootstrap)
-      if (!registrationForm.checkValidity()) {
-        registrationForm.classList.add('was-validated');
-        // Find the first invalid field and focus it for better UX
-        const firstInvalidField = registrationForm.querySelector(
-          ':invalid:not(fieldset)'
-        ); // :not(fieldset) to avoid issues with fieldset
-        if (firstInvalidField) {
-          firstInvalidField.focus();
-        }
-        return;
-      }
+      // // Form validation check (Bootstrap)
+      // if (!registrationForm.checkValidity()) {
+      //   registrationForm.classList.add('was-validated');
+      //   // Find the first invalid field and focus it for better UX
+      //   const firstInvalidField = registrationForm.querySelector(
+      //     ':invalid:not(fieldset)'
+      //   ); // :not(fieldset) to avoid issues with fieldset
+      //   if (firstInvalidField) {
+      //     firstInvalidField.focus();
+      //   }
+      //   return;
+      // }
 
       const city = document.getElementById('citySelect').value;
       const street = document.getElementById('street').value;
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
           alert(
             'A flat with these core details (City, Street, Number, Area, Year Built) already exists.'
           );
-          registrationForm.classList.remove('was-validated'); // Reset validation display for this specific alert
+          // registrationForm.classList.remove('was-validated'); // Reset validation display for this specific alert
           return;
         }
 
@@ -229,16 +229,11 @@ function initializeNavbar() {
     );
     if (currentUser) {
       userGreetingNameSpan.textContent =
-        currentUser._firstName || currentUser.firstName || currentUserEmail; // Fallback to email if name not found
-    } else {
-      userGreetingNameSpan.textContent = currentUserEmail; // Fallback if user object not found
+        currentUser._firstName || currentUser.firstName || currentUserEmail;
     }
-  } else if (userGreetingNameSpan) {
-    userGreetingNameSpan.textContent = 'Guest'; // Or hide the greeting
   }
 
-  // Optional: Set active nav link
-  const currentPage = window.location.pathname.split('/').pop(); // e.g., "home.html"
+  const currentPage = window.location.pathname.split('/').pop();
   if (currentPage) {
     const navLinks = {
       'home.html': document.getElementById('navHomeLink'),

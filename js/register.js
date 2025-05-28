@@ -29,16 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // We will rely on our JS check for the pattern.
       // The HTML `pattern` attribute will still provide browser hints and CSS pseudo-classes like :invalid
       if (!registrationForm.checkValidity()) {
-        // This check will catch required fields, email format, minlength (other than password pattern if it was missed)
-        registrationForm.classList.add('was-validated');
         console.error(
           'Form is not valid due to HTML5 constraints (e.g., required, minlength, type). Check other fields.'
         );
-        // Find the first invalid field and focus it for better UX
-        const firstInvalidField = registrationForm.querySelector(':invalid');
-        if (firstInvalidField) {
-          firstInvalidField.focus();
-        }
         return;
       }
 
